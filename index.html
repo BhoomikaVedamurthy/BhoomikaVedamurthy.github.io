@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bhoomika Vedamurthy | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#0f0f1a;
+  --bg3:#13131f;
+  --card:#ffffff08;
+  --card-border:#ffffff12;
+  --text:#e8e8f0;
+  --muted:#8888aa;
+  --accent:#7c5cbf;
+  --accent2:#4f8ef7;
+  --accent3:#2dd4bf;
+  --glow:rgba(124,92,191,0.25);
+  --glow2:rgba(79,142,247,0.2);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* Animated BG */
+.bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.25;animation:float 8s ease-in-out infinite;}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#7c5cbf,transparent);top:-100px;left:-100px;animation-delay:0s;}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#4f8ef7,transparent);bottom:10%;right:-80px;animation-delay:3s;}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,#2dd4bf,transparent);top:50%;left:40%;animation-delay:5s;}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-30px) scale(1.05);}}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);}
+.nav-logo{text-decoration:none;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.3px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-resume{background:linear-gradient(135deg,#7c5cbf,#4f8ef7);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:0.875rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity 0.2s,transform 0.2s;}
+.nav-resume:hover{opacity:0.85;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,15,0.97);backdrop-filter:blur(20px);padding:1.5rem 2rem;border-bottom:1px solid var(--card-border);z-index:999;flex-direction:column;gap:1rem;}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:500;padding:0.5rem 0;border-bottom:1px solid var(--card-border);}
+.mobile-menu.open{display:flex;}
+
+/* PAGE SECTIONS */
+section{position:relative;z-index:1;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:80px 2rem 2rem;max-width:1200px;margin:0 auto;gap:4rem;}
+.hero-text{flex:1;}
+.hero-name{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.05;background:linear-gradient(135deg,#fff 30%,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
+.hero-role{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--muted);margin-bottom:1rem;height:2rem;display:flex;align-items:center;gap:0.5rem;}
+.typing-text{color:var(--accent2);font-family:'Fira Code',monospace;font-weight:500;}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent2);animation:blink 0.8s infinite;margin-left:2px;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-tagline{font-size:1.1rem;color:var(--accent);font-style:italic;margin-bottom:1rem;font-family:'Fira Code',monospace;}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:2rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:linear-gradient(135deg,#7c5cbf,#4f8ef7);color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;font-size:0.95rem;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow);}
+.btn-outline{background:transparent;color:var(--text);padding:12px 28px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--card-border);transition:all 0.2s;font-size:0.95rem;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-socials{display:flex;gap:1rem;margin-top:2rem;}
+.social-link{width:40px;height:40px;border-radius:10px;border:1px solid var(--card-border);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:all 0.2s;font-size:0.85rem;}
+.social-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-image{flex:0 0 340px;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
+.hero-img-wrap{position:relative;width:280px;height:280px;}
+.hero-img-ring{position:absolute;inset:-12px;border-radius:50%;background:conic-gradient(from 0deg,#7c5cbf,#4f8ef7,#2dd4bf,#7c5cbf);animation:spin 6s linear infinite;opacity:0.7;}
+.hero-img-ring2{position:absolute;inset:-6px;border-radius:50%;background:var(--bg);}
+.hero-img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:cover;z-index:1;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.hero-badge{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:12px 20px;text-align:center;backdrop-filter:blur(10px);}
+.hero-badge .label{font-size:0.75rem;color:var(--muted);margin-bottom:4px;}
+.hero-badge .value{font-size:1rem;font-weight:700;color:var(--accent3);}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:0.75rem;}
+.scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:scroll-bounce 2s ease-in-out infinite;}
+@keyframes scroll-bounce{0%,100%{transform:translateY(0);opacity:1;}50%{transform:translateY(8px);opacity:0.4;}}
+
+/* SECTION SHARED */
+.section-wrap{max-width:1200px;margin:0 auto;padding:5rem 2rem;}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-line{width:60px;height:3px;background:linear-gradient(90deg,#7c5cbf,#4f8ef7);border-radius:2px;margin-bottom:3rem;}
+
+/* ABOUT */
+#about{background:linear-gradient(180deg,transparent,rgba(124,92,191,0.03),transparent);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-image-wrap{position:relative;}
+.about-img-card{border-radius:20px;overflow:hidden;border:1px solid var(--card-border);background:var(--card);backdrop-filter:blur(10px);}
+.about-img-card img{width:100%;height:360px;object-fit:cover;display:block;}
+.about-stat-row{display:flex;gap:1rem;margin-top:1rem;}
+.stat-card{flex:1;background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:1rem;text-align:center;backdrop-filter:blur(10px);}
+.stat-num{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1.25rem;font-size:0.97rem;}
+.about-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1.5rem;}
+.about-info-item{display:flex;gap:0.5rem;align-items:flex-start;}
+.info-icon{font-size:0.85rem;color:var(--accent);margin-top:2px;}
+.info-label{font-size:0.75rem;color:var(--muted);}
+.info-val{font-size:0.875rem;color:var(--text);font-weight:500;}
+
+/* SKILLS */
+#skills{background:linear-gradient(180deg,transparent,rgba(79,142,247,0.03),transparent);}
+.skills-categories{display:flex;flex-direction:column;gap:2.5rem;}
+.skill-cat-title{font-size:0.85rem;font-family:'Fira Code',monospace;color:var(--accent2);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.skill-cat-title::after{content:'';flex:1;height:1px;background:var(--card-border);}
+.skills-grid{display:flex;flex-wrap:wrap;gap:0.75rem;}
+.skill-chip{background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:8px 16px;font-size:0.875rem;font-weight:500;color:var(--text);cursor:default;transition:all 0.2s;backdrop-filter:blur(10px);position:relative;overflow:hidden;}
+.skill-chip::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,191,0.15),rgba(79,142,247,0.1));opacity:0;transition:opacity 0.2s;}
+.skill-chip:hover::before{opacity:1;}
+.skill-chip:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px var(--glow);}
+.skill-chip.fe{--chip-glow:rgba(124,92,191,0.3);}
+.skill-chip.be{--chip-glow:rgba(79,142,247,0.3);}
+.skill-chip.db{--chip-glow:rgba(45,212,191,0.3);}
+.skill-chip.tools{--chip-glow:rgba(250,204,21,0.2);}
+.skill-chip.ai{--chip-glow:rgba(244,114,182,0.3);}
+
+/* DIVIDER */
+.section-divider{max-width:1200px;margin:0 auto 0;padding:0 2rem;}
+.divider-line{height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);}
+
+/* PAGE 2 */
+/* PROJECTS */
+#projects{background:linear-gradient(180deg,transparent,rgba(45,212,191,0.03),transparent);}
+.projects-filter{display:flex;gap:0.75rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.filter-btn{background:var(--card);border:1px solid var(--card-border);color:var(--muted);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:0.875rem;font-weight:500;transition:all 0.2s;}
+.filter-btn.active,.filter-btn:hover{background:linear-gradient(135deg,#7c5cbf,#4f8ef7);color:#fff;border-color:transparent;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;}
+.project-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:all 0.3s;backdrop-filter:blur(10px);}
+.project-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 20px 60px var(--glow);}
+.project-header{padding:1.5rem 1.5rem 1rem;background:linear-gradient(135deg,rgba(124,92,191,0.1),rgba(79,142,247,0.05));}
+.project-status{font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:0.75rem;}
+.status-completed{background:rgba(45,212,191,0.15);color:#2dd4bf;}
+.project-title{font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:0.5rem;}
+.project-cat{font-size:0.75rem;color:var(--muted);font-family:'Fira Code',monospace;}
+.project-body{padding:1rem 1.5rem 1.5rem;}
+.project-desc{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.25rem;}
+.project-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem;}
+.stack-tag{font-size:0.7rem;padding:3px 10px;border-radius:6px;background:rgba(124,92,191,0.12);color:#a78bfa;border:1px solid rgba(124,92,191,0.2);}
+.project-links{display:flex;gap:0.75rem;}
+.proj-link{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid var(--card-border);transition:all 0.2s;}
+.proj-link:hover{color:var(--accent2);border-color:var(--accent2);}
+.proj-link.disabled{opacity:0.4;pointer-events:none;}
+
+/* EDUCATION */
+#education{background:linear-gradient(180deg,transparent,rgba(124,92,191,0.03),transparent);}
+.edu-timeline{position:relative;padding-left:2rem;}
+.edu-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#7c5cbf,#4f8ef7,#2dd4bf);}
+.edu-item{position:relative;margin-bottom:2.5rem;}
+.edu-dot{position:absolute;left:-2.45rem;top:1.2rem;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#7c5cbf,#4f8ef7);box-shadow:0 0 16px var(--glow);}
+.edu-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;backdrop-filter:blur(10px);transition:all 0.3s;}
+.edu-card:hover{border-color:var(--accent);transform:translateX(6px);}
+.edu-degree{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.25rem;}
+.edu-institute{font-size:0.95rem;color:var(--accent2);margin-bottom:0.25rem;}
+.edu-meta{display:flex;gap:1.5rem;font-size:0.8rem;color:var(--muted);margin-top:0.75rem;flex-wrap:wrap;}
+.edu-meta span{display:flex;align-items:center;gap:0.4rem;}
+.edu-gpa{display:inline-block;background:linear-gradient(135deg,rgba(45,212,191,0.15),rgba(79,142,247,0.1));border:1px solid rgba(45,212,191,0.2);border-radius:8px;padding:4px 12px;font-size:0.85rem;font-weight:700;color:#2dd4bf;margin-top:0.75rem;}
+
+/* CERTIFICATIONS */
+#certifications{background:linear-gradient(180deg,transparent,rgba(79,142,247,0.03),transparent);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+.cert-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:1.5rem;transition:all 0.3s;backdrop-filter:blur(10px);position:relative;overflow:hidden;}
+.cert-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c5cbf,#4f8ef7);}
+.cert-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 16px 40px var(--glow);}
+.cert-platform{font-size:0.75rem;font-family:'Fira Code',monospace;color:var(--accent2);margin-bottom:0.5rem;}
+.cert-name{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.75rem;line-height:1.4;}
+.cert-meta{display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--muted);}
+.cert-skills{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;}
+.cert-skill{font-size:0.7rem;padding:3px 10px;border-radius:6px;background:rgba(79,142,247,0.12);color:#60a5fa;border:1px solid rgba(79,142,247,0.2);}
+.cert-verify{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.8rem;color:var(--accent3);text-decoration:none;transition:opacity 0.2s;}
+.cert-verify:hover{opacity:0.75;}
+
+/* PAGE 3 */
+/* CTA */
+#cta{padding:5rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(124,92,191,0.08),rgba(79,142,247,0.05));}
+.cta-wrap{max-width:700px;margin:0 auto;}
+.cta-availability{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.2);border-radius:999px;padding:6px 16px;font-size:0.8rem;color:#2dd4bf;margin-bottom:1.5rem;}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#2dd4bf;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,0.5);}50%{box-shadow:0 0 0 6px transparent;}}
+.cta-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:1rem;}
+.cta-sub{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;}
+.contact-info h3{font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;}
+.contact-info p{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2rem;}
+.contact-items{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--card);border:1px solid var(--card-border);border-radius:12px;backdrop-filter:blur(10px);}
+.contact-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(124,92,191,0.2),rgba(79,142,247,0.15));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.contact-detail .label{font-size:0.75rem;color:var(--muted);}
+.contact-detail .val{font-size:0.9rem;font-weight:500;color:var(--text);}
+.contact-form{background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:2rem;backdrop-filter:blur(10px);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;}
+.form-group label{font-size:0.8rem;color:var(--muted);font-weight:500;}
+.form-group input,.form-group textarea{background:rgba(255,255,255,0.04);border:1px solid var(--card-border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:0.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;resize:none;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group textarea{height:120px;}
+.form-submit{width:100%;background:linear-gradient(135deg,#7c5cbf,#4f8ef7);color:#fff;border:none;padding:13px;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.form-submit:hover{opacity:0.85;transform:translateY(-1px);}
+.form-note{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.75rem;}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--card-border);padding:2.5rem 2rem;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-left{font-size:0.875rem;color:var(--muted);}
+.footer-left strong{color:var(--text);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-social{display:flex;gap:0.75rem;}
+.footer-social a{width:34px;height:34px;border-radius:8px;border:1px solid var(--card-border);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:0.8rem;transition:all 0.2s;}
+.footer-social a:hover{border-color:var(--accent);color:var(--accent);}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #hero{flex-direction:column-reverse;text-align:center;padding-top:100px;}
+  .hero-image{flex:none;}
+  .hero-btns,.hero-socials{justify-content:center;}
+  .hero-desc{margin:0 auto 2rem;}
+  .about-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:600px){
+  .hero-img-wrap{width:220px;height:220px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#hero" class="nav-logo">Bhoomika Vedamurthy</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://drive.google.com/file/d/1phtiJBk1benDUw1aV_MiKOzGQdhHK8mo/view?usp=sharing" target="_blank" class="nav-resume">Download Resume</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="https://drive.google.com/file/d/1phtiJBk1benDUw1aV_MiKOzGQdhHK8mo/view?usp=sharing" target="_blank">Download Resume ↗</a>
+</div>
+
+<!-- ===================== PAGE 1 ===================== -->
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <h1 class="hero-name">Bhoomika<br/>Vedamurthy</h1>
+    <div class="hero-role">
+      <span style="color:var(--muted);">I'm a</span>
+      <span class="typing-text" id="typingText"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-tagline">"Code. Create. Innovate."</p>
+    <p class="hero-desc">A passionate Full Stack Java Developer focused on creating scalable and interactive web applications, constantly learning and improving with every project.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://linkedin.com/in/bhoomikamv" target="_blank" class="social-link" title="LinkedIn">in</a>
+      <a href="https://github.com/BhoomikaVedamurthi/bhoomikamv.git" target="_blank" class="social-link" title="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="mailto:bhoomikavedamurthi@gmail.com" class="social-link" title="Email">@</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-img-wrap">
+      <div class="hero-img-ring"></div>
+      <div class="hero-img-ring2"></div>
+      <img class="hero-img" src="https://image2url.com/r2/default/images/1775645105069-2401b2bb-e522-411a-b041-7bcf949f674d.jpeg" alt="Bhoomika Vedamurthy"/>
+    </div>
+    <div class="hero-badge">
+      <div class="label">Primary Domain</div>
+      <div class="value">Full Stack Web Development</div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Who Am I?</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <div class="about-img-card">
+          <img src="https://image2url.com/r2/default/images/1775645105069-2401b2bb-e522-411a-b041-7bcf949f674d.jpeg" alt="Bhoomika Vedamurthy"/>
+        </div>
+        <div class="about-stat-row">
+          <div class="stat-card">
+            <div class="stat-num">1+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1+</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">B.E</div>
+            <div class="stat-label">CS Degree</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p>I am an aspiring Full Stack Java Developer with a strong passion for building scalable and impactful web applications. I am currently strengthening my Full Stack Java skills through intensive training at TAP Academy, working towards building production-ready web applications.</p>
+        <p>My journey has helped me develop a solid understanding of programming fundamentals, problem-solving, and clean coding practices. I enjoy working across both frontend and backend, creating seamless and efficient user experiences.</p>
+        <p>My goal is to become a proficient software engineer, contribute to innovative projects, and develop solutions that make a meaningful impact in the real world.</p>
+        <div class="about-info-grid">
+          <div class="about-info-item">
+            <span class="info-icon">📍</span>
+            <div><div class="info-label">Location</div><div class="info-val">Bengaluru, Karnataka</div></div>
+          </div>
+          <div class="about-info-item">
+            <span class="info-icon">🎓</span>
+            <div><div class="info-label">Degree</div><div class="info-val">B.E Computer Science</div></div>
+          </div>
+          <div class="about-info-item">
+            <span class="info-icon">✉️</span>
+            <div><div class="info-label">Email</div><div class="info-val" style="font-size:0.78rem;">bhoomikavedamurthi@gmail.com</div></div>
+          </div>
+          <div class="about-info-item">
+            <span class="info-icon">💼</span>
+            <div><div class="info-label">Status</div><div class="info-val" style="color:#2dd4bf;">Open to Opportunities</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Skills & Technologies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-categories reveal">
+      <div>
+        <div class="skill-cat-title">Frontend</div>
+        <div class="skills-grid">
+          <span class="skill-chip fe">React</span>
+          <span class="skill-chip fe">HTML5</span>
+          <span class="skill-chip fe">CSS3</span>
+          <span class="skill-chip fe">JavaScript</span>
+          <span class="skill-chip fe">Bootstrap</span>
+          <span class="skill-chip fe">Tailwind CSS</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Backend</div>
+        <div class="skills-grid">
+          <span class="skill-chip be">Java</span>
+          <span class="skill-chip be">Jakarta EE</span>
+          <span class="skill-chip be">JSP</span>
+          <span class="skill-chip be">Spring Boot</span>
+          <span class="skill-chip be">REST APIs</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Database</div>
+        <div class="skills-grid">
+          <span class="skill-chip db">MySQL</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Tools & DevOps</div>
+        <div class="skills-grid">
+          <span class="skill-chip tools">Git</span>
+          <span class="skill-chip tools">VS Code</span>
+          <span class="skill-chip tools">Jenkins</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">AI Tools</div>
+        <div class="skills-grid">
+          <span class="skill-chip ai">ChatGPT</span>
+          <span class="skill-chip ai">Claude</span>
+          <span class="skill-chip ai">GitHub Copilot</span>
+          <span class="skill-chip ai">Google Gemini</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<div style="height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);max-width:1200px;margin:0 auto;"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-filter reveal">
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('web',this)">Web Application</button>
+      <button class="filter-btn" onclick="filterProjects('ai',this)">AI / ML</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="project-card reveal" data-cat="web ai">
+        <div class="project-header">
+          <span class="project-status status-completed">✓ Completed</span>
+          <div class="project-title">Secure Online Exam Proctoring Using AI and Facial Recognition</div>
+          <div class="project-cat">Web Application • AI / ML</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">An AI-driven online exam proctoring platform using facial recognition and real-time monitoring to maintain exam integrity and prevent impersonation, ensuring a secure and trustworthy assessment environment.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">OpenCV</span>
+            <span class="stack-tag">Mediapipe</span>
+            <span class="stack-tag">Flask</span>
+            <span class="stack-tag">HTML/CSS/JS</span>
+            <span class="stack-tag">SQLite</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="proj-link disabled">🔗 Live Demo</a>
+            <a href="#" class="proj-link disabled">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-item reveal">
+        <div class="edu-dot"></div>
+        <div class="edu-card">
+          <div class="edu-degree">B.E in Computer Science</div>
+          <div class="edu-institute">Mysore College of Engineering and Management (MyCEM)</div>
+          <div class="edu-meta">
+            <span>📍 Mysuru, India</span>
+            <span>🎓 Graduating 2026</span>
+          </div>
+          <div class="edu-gpa">CGPA: 8.3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-platform">Deloitte × Forage</div>
+        <div class="cert-name">Data Analytics Virtual Internship</div>
+        <div class="cert-meta">
+          <span>August 2025</span>
+        </div>
+        <div class="cert-skills">
+          <span class="cert-skill">SQL</span>
+          <span class="cert-skill">Tableau</span>
+        </div>
+        <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_s4yKKckqkk7mw6stq_1754245186883_completion_certificate.pdf" target="_blank" class="cert-verify">
+          🏅 View Certificate ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAGE 3 ===================== -->
+<div style="height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);max-width:1200px;margin:0 auto;"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-wrap">
+    <div class="cta-availability reveal">
+      <div class="avail-dot"></div>
+      Open for opportunities
+    </div>
+    <h2 class="cta-title reveal">Let's Work<br/>Together!</h2>
+    <p class="cta-sub reveal">Have a project in mind or just want to say hi? I'd love to hear from you. Let's build something amazing together.</p>
+    <div class="cta-btns reveal">
+      <a href="#contact" class="btn-primary">Start a Conversation</a>
+      <a href="https://drive.google.com/file/d/1phtiJBk1benDUw1aV_MiKOzGQdhHK8mo/view?usp=sharing" target="_blank" class="btn-outline">Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="reveal">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Let's Connect</h3>
+        <p>I'm currently looking for new opportunities. Whether you have a question, a project idea, or just want to say hello — my inbox is always open!</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail">
+              <div class="label">Email</div>
+              <div class="val">bhoomikavedamurthi@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+              <div class="label">Location</div>
+              <div class="val">Bengaluru, Karnataka, India</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">in</div>
+            <div class="contact-detail">
+              <div class="label">LinkedIn</div>
+              <a href="https://linkedin.com/in/bhoomikamv" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:0.9rem;font-weight:500;">linkedin.com/in/bhoomikamv</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </div>
+            <div class="contact-detail">
+              <div class="label">GitHub</div>
+              <a href="https://github.com/BhoomikaVedamurthi/bhoomikamv.git" target="_blank" style="color:var(--accent2);text-decoration:none;font-size:0.9rem;font-weight:500;">BhoomikaVedamurthi</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <form id="contactForm" action="https://formspree.io/f/xnjorgkk" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstName" placeholder="John" required/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastName" placeholder="Doe" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="john@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Project collaboration..." required/>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell me about your project or idea..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+        <p class="form-note" id="formNote">I'll get back to you within 24 hours.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Bhoomika Vedamurthy</strong> &nbsp;·&nbsp; Built with passion &amp; code &nbsp;·&nbsp; © 2025
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/bhoomikamv" target="_blank" title="LinkedIn">in</a>
+      <a href="https://github.com/BhoomikaVedamurthi/bhoomikamv.git" target="_blank" title="GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="mailto:bhoomikavedamurthi@gmail.com" title="Email">@</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Typing animation
+const roles=['Full Stack Developer','Java Developer','Web Developer','Problem Solver'];
+let roleIdx=0,charIdx=0,deleting=false;
+const el=document.getElementById('typingText');
+function type(){
+  const cur=roles[roleIdx];
+  if(!deleting){
+    el.textContent=cur.slice(0,++charIdx);
+    if(charIdx===cur.length){deleting=true;setTimeout(type,1800);return;}
+  }else{
+    el.textContent=cur.slice(0,--charIdx);
+    if(charIdx===0){deleting=false;roleIdx=(roleIdx+1)%roles.length;}
+  }
+  setTimeout(type,deleting?60:100);
+}
+setTimeout(type,600);
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Project filter
+function filterProjects(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card=>{
+    const cats=card.dataset.cat||'';
+    card.style.display=(cat==='all'||cats.includes(cat))?'block':'none';
+  });
+}
+
+// Mobile menu
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+// Contact form - Formspree
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const formNote = document.getElementById('formNote');
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if(res.ok){
+      submitBtn.textContent = '✓ Message Sent!';
+      submitBtn.style.background = 'linear-gradient(135deg,#2dd4bf,#059669)';
+      formNote.textContent = 'Thanks! Bhoomika will get back to you within 24 hours.';
+      formNote.style.color = '#2dd4bf';
+      form.reset();
+    } else {
+      throw new Error('Failed');
+    }
+  } catch(err){
+    submitBtn.textContent = 'Send Message →';
+    submitBtn.disabled = false;
+    formNote.textContent = 'Oops! Something went wrong. Please try again.';
+    formNote.style.color = '#f87171';
+  }
+});
+
+// Smooth nav active state
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  navLinks.forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+current?'var(--text)':'var(--muted)';
+  });
+});
+</script>
+</body>
+</html>
